@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: kaiju_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-kaiju_admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-kaiju_secret_pass}
+      POSTGRES_DB: ${DB_NAME:-kaiju_db}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/migrations/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ./db/seeds/001_init_data.sql:/docker-entrypoint-initdb.d/2_seeds.sql
+
+  api:
+    build: .
+    container_name: kaiju_api
+    restart: always
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-kaiju_admin}
+      DB_PASSWORD: ${DB_PASSWORD:-kaiju_secret_pass}
+      DB_NAME: ${DB_NAME:-kaiju_db}
+      JWT_SECRET: ${JWT_SECRET:-super_secret_kaiju_key_change_in_production}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-24h}
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:

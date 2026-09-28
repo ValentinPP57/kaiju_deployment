@@ -1,0 +1,113 @@
+:root {
+  --text: black;
+  --bg: #ffffff;
+  --border: #3e3c42;
+  --accent: black;
+  --font: 'Bauhaus Bugler', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  transition: 0.8s;
+}
+
+::placeholder {
+  color: var(--accent);
+  opacity: 0.5;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.register-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.register-container form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.register-container h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 28px;
+}
+
+.register-container input[type="email"],
+.register-container input[type="password"],
+.register-container input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.register-container input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.register-container button {
+  padding: 12px;
+  font-size: 16px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.8s ease, transform 0.3s ease;
+}
+.register-container button:hover {
+  opacity: 0.9;
+  background-color: #310d35;
+  
+}
+
+.register-container p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.linklogin {
+  text-align: center;
+}
+
+.linklogin p {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.linklogin a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+  transition: 0.3s;
+}
+
+.linklogin a:hover {
+  text-decoration: none;
+  color: #621A68;
+}
