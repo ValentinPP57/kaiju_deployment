@@ -12,5 +12,8 @@ export default defineConfig({
         changeOrigin: true,
       }
     }
+  },
+  preview: {
+    allowedHosts: ['kaiju-deployment-1.onrender.com'],
   }
 })
